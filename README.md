@@ -1,11 +1,8 @@
-# kubernetes-aws-vpc-kops-terraform
+# kops-terraform
 
-Example code for
-the
-[Deploy Kubernetes in an Existing AWS VPC with Kops and Terraform](https://ryaneschinger.com/blog/kubernetes-aws-vpc-kops-terraform/) blog
-post.
+[Deploy Kubernetes in an Existing AWS VPC with Kops and Terraform](https://ryaneschinger.com/blog/kubernetes-aws-vpc-kops-terraform/).
 
-## tldr
+## TLDR
 
 ```bash
 terraform apply -var name=yourdomain.com
@@ -40,7 +37,7 @@ kops update cluster \
 terraform apply -var name=yourdomain.com
 ```
 
-## using a subdomain
+## Using a subdomain
 
 If you want all of your dns records to live under a subdomain in its own hosted
 zone, you need to setup route delegation to the new zone. After running
