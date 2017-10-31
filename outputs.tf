@@ -11,15 +11,15 @@ output "vpc_id" {
 }
 
 output "name_servers" {
-  value = "${aws_route53_zone.public.name_servers}"
+  value = "${module.hosted_zone.name_servers}"
 }
 
 output "public_zone_id" {
-  value = "${aws_route53_zone.public.zone_id}"
+  value = "${module.hosted_zone.public_zone_id}"
 }
 
 output "state_store" {
-  value = "s3://${aws_s3_bucket.state_store.id}"
+  value = "s3://${module.remote_state.state_store}"
 }
 
 output "public_subnet_ids" {

@@ -29,31 +29,28 @@ module "subnet_pair" {
   }
 }
 
-resource "aws_route53_zone" "public" {
-  name          = "${var.name}"
-  force_destroy = true
+module "hosted_zone" {
+  source   = "./modules/route-53"
+  name     = "${var.name}"
+  env      = "${var.env}"
 
   tags {
-    Name        = "${var.name}-${var.env}-zone-public"
-    Infra       = "${var.name}"
-    Environment = "${var.env}"
-    Terraformed = "true"
+    Infra             = "${var.name}"
+    Environment       = "${var.env}"
+    Terraformed       = "true"
+    KubernetesCluster = "${var.env}.${var.name}"
   }
 }
 
-resource "aws_s3_bucket" "state_store" {
-  bucket        = "${var.name}-state"
-  acl           = "private"
-  force_destroy = true
-
-  versioning {
-    enabled = true
-  }
+module "remote_state" {
+  source   = "./modules/s3-bucket"
+  name     = "${var.name}"
+  env      = "${var.env}"
 
   tags {
-    Name        = "${var.name}-${var.env}-state-store"
-    Infra       = "${var.name}"
-    Environment = "${var.env}"
-    Terraformed = "true"
+    Infra             = "${var.name}"
+    Environment       = "${var.env}"
+    Terraformed       = "true"
+    KubernetesCluster = "${var.env}.${var.name}"
   }
 }

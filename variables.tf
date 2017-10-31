@@ -12,7 +12,7 @@ variable "azs" {
 }
 
 variable "env" {
-  default = "staging"
+  default = "dev"
 }
 
 variable "vpc_cidr" {
